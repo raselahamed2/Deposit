@@ -17,25 +17,38 @@ document.getElementById('btn-Withdraw').addEventListener('click', function(){
     const newWitdrawAmountString = witdrawField.value;
     const newWitdrawAmount = parseFloat(newWitdrawAmountString);
 
+    //step-7
+    witdrawField.value = '';
+
+    if(isNaN(newWitdrawAmount)){
+        alert('plase porvid a number')
+        return;
+    }
+
     //step-3
     const WitdrawTotalElemnt = document.getElementById('withdraw-total');
     const previousWitdrawTotalString = WitdrawTotalElemnt.innerText;
     const previousWitdrawTotal = parseFloat(previousWitdrawTotalString);
 
-    // step-4
-    const currentWitdrawTotal = previousWitdrawTotal + newWitdrawAmount;
-    WitdrawTotalElemnt.innerText = currentWitdrawTotal;
 
     //step-5
     const balanceTotalElement = document.getElementById('balnce-total')
     const previousBalanceTotoalString = balanceTotalElement.innerText;
     const previousBalanceTotal = parseFloat(previousBalanceTotoalString);
 
+
+
+    if(newWitdrawAmount > previousBalanceTotal){
+        alert('baper bank ee ato tk  nai')
+        return;
+    }
+
+    // step-4
+    const currentWitdrawTotal = previousWitdrawTotal + newWitdrawAmount;
+    WitdrawTotalElemnt.innerText = currentWitdrawTotal;
+
     // step-6
     const newBalanceTotal = previousBalanceTotal - newWitdrawAmount;
     balanceTotalElement.innerText = newBalanceTotal;
 
-
-    //step-7
-    witdrawField.value = '';
 })
